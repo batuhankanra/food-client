@@ -12,9 +12,8 @@ interface UpdateFoodArgs {
 export const CreateApi=createAsyncThunk<string, FormData>('food/createFood',async (formData)=>{
     try{
         const response = await axios.post(`${import.meta.env.VITE_API_URL}add`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data', 
-        },
+        withCredentials: true
+
       });
 
       return response.data
