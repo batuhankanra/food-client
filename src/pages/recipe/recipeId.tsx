@@ -1,12 +1,14 @@
 
 import { useParams } from 'react-router'
-import { useAppSelector } from '../../stores/hook'
+import { useAppDispatch, useAppSelector } from '../../stores/hook'
+import { setModal } from '../../stores/features/modal'
 
 
 
 const RecipeId = () => {
     const {category}=useParams()
     const {data}=useAppSelector(state=>state.api)
+    const dispatch=useAppDispatch()
   return (
     <section className='max-w-7xl mx-auto p-6'>
         
@@ -19,7 +21,7 @@ const RecipeId = () => {
                         <div className='p-4 flex-1'>
                             <h3 className='text-xl font-semibold '> {item.title}</h3>
                             <p className='text-sm mt-2 mb-4 text-wrap'>{item.description} </p>
-                            <button className='border border-sky-500 p-2 rounded-md hover:bg-sky-700 cursor-pointer duration-300 w-full'>Tarifi Gor</button>
+                            <button className='border border-sky-500 p-2 rounded-md hover:bg-sky-700 cursor-pointer duration-300 w-full' type='button' onClick={()=>dispatch(setModal({id:item._id,modal:'food'}))} >Tarifi Gor</button>
                         </div>
                     </div>
                 ))}
